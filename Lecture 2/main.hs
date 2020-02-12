@@ -30,8 +30,21 @@ g (Tuk True) = 1
 g (Tuk False) = 0
 g (Tuka x) = 1 + (f x) -- Mutual recursion was here!
 
+-- Type equality example
+
+type T1 = (Int, Float)
+type T2 = (Int, Float)
+
+v1 = (5, 0.5)::T1
+v2 = (5, 0.5)::T2
+
+ftt :: T1 -> Int
+ftt (x, y) = x
+
 main = do
   print $ last2 v
   print $ sumbt bt
   print $ f taka
   print $ g tuka
+  print $ ftt v1
+  print $ ftt v2 -- This should work as Haskell uses set equivalence for type equivalence checking
